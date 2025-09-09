@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func main() {
 	test := []any{
@@ -25,13 +28,10 @@ func determine(v any) string {
 		return "string"
 	case bool:
 		return "bool"
-	case chan string:
-		return "chan string"
-	case chan int:
-		return "chan int"
-	case chan bool:
-		return "chan bool"
 	default:
+		if reflect.TypeOf(v).Kind() == reflect.Chan {
+			return "chan"
+		}
 		return "unknown"
 	}
 }
