@@ -2,21 +2,22 @@ package main
 
 import "fmt"
 
+type TestCase struct {
+	a, b int
+}
+
 func main() {
-	a, b := 0, 1
-	fmt.Printf("Значение до замены: %d %d\n", a, b)
-	a, b = Swap(a, b)
-	fmt.Printf("Значение после замены: %d %d\n", a, b)
+	test := []TestCase{
+		{1, 2},
+		{2, 3},
+		{3, 4},
+	}
 
-	c, d := 1, 2
-	fmt.Printf("Значение до замены: %d %d\n", c, d)
-	c, d = Swap(c, d)
-	fmt.Printf("Значение после замены: %d %d\n", c, d)
-
-	e, f := 2, 3
-	fmt.Printf("Значение до замены: %d %d\n", e, f)
-	e, f = Swap(e, f)
-	fmt.Printf("Значение после замены: %d %d\n", e, f)
+	for _, t := range test {
+		fmt.Printf("Значения до изменений: \na: %d, b: %d\n", t.a, t.b)
+		a, b := Swap(t.a, t.b)
+		fmt.Printf("Значения после изменений: \na: %d, b: %d\n", a, b)
+	}
 }
 
 func Swap(a, b int) (int, int) {
